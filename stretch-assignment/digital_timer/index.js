@@ -3,7 +3,7 @@
 <div class="digit" id="colon">:</div>
 <div class="digit" id="msHundreds">-</div>
 <div class="digit" id="msTens">-</div> */}
-
+document.querySelector('body').style.flexDirection = 'column';
 
 const places = ['#msTens', '#msHundreds', '#secondOnes', '#secondTens'];
 let digits = [0,0,0,0];
