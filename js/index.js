@@ -41,10 +41,11 @@ const siteContent = {
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent.nav["img-src"]);
 
-let navLinks = document.getElementsByTagName('a');
+let navLinks = document.querySelectorAll('a');
 Array.from(navLinks).forEach(function(item, index){
   navLinks[index].textContent = siteContent.nav[`nav-item-${index + 1}`];
 });
+
 
 const ctaTextItem = document.querySelector('.cta-text');
 const ctaImage = document.querySelector('#cta-img');
@@ -60,10 +61,14 @@ const textDivs = document.querySelectorAll('.text-content');
 const mainCont = siteContent['main-content'];
 //Array to address individual boxes:
 const textBoxes = ['features-','about-','services-','product-','vision-'];
-Array.from(textDivs).forEach(function(item,index){
-  textDivs[index].querySelector('h4').innerText = mainCont[`${textBoxes[index]}h4`];
-  textDivs[index].querySelector('p').innerText = mainCont[`${textBoxes[index]}content`];
-})
+// Array.from(textDivs).forEach(function(item,index){
+//   textDivs[index].querySelector('h4').innerText = mainCont[`${textBoxes[index]}h4`];
+//   textDivs[index].querySelector('p').innerText = mainCont[`${textBoxes[index]}content`];
+// })
+for (let i = 0; i < textDivs.length; i++){
+  textDivs[i].querySelector('h4').innerText = mainCont[`${textBoxes[i]}h4`];
+  textDivs[i].querySelector('p').innerText = mainCont[`${textBoxes[i]}content`];
+}
 
 //Contact section:
 const contSection = document.querySelector('.contact');
@@ -73,3 +78,35 @@ contPs[0].innerText = siteContent['contact']['address'];
 contPs[1].innerText = siteContent['contact']['phone'];
 contPs[2].innerText = siteContent['contact']['email'];
 
+//Footer:
+document.querySelector('footer').querySelector('p').innerText = siteContent['footer']['copyright'];
+
+// // Update navigation color to green:
+// Array.from(navLinks).forEach(function(item,index){
+//   navLinks[index].style.color = 'green';
+// })
+for(let i = 0; i < navLinks.length; i++){
+  navLinks[i].style.color = 'green';
+}
+
+//Add 2 new links to nav bar:
+const firstLink = document.createElement('a');
+firstLink.innerText = 'First!';
+const lastLink = document.createElement('a');
+lastLink.innerText = 'Last!';
+document.querySelector('nav').appendChild(lastLink);
+document.querySelector('nav').prepend(firstLink);
+//NOTE: links added after the color was updated do not have the new style.color
+//If the links were given a class, that class could be updated
+//(instead of the individual links)
+
+const hideButton = document.querySelector('button');
+hideButton.innerText = 'Show/Hide Info';
+hideButton.addEventListener('click', (event) => {
+  const mainCont = document.querySelector('.main-content');
+  if (mainCont.style.display !==  'none'){
+    mainCont.style.display = 'none';
+  } else {
+    mainCont.style.display = 'block';
+  }
+})
