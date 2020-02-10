@@ -4,6 +4,7 @@
 <div class="digit" id="msHundreds">-</div>
 <div class="digit" id="msTens">-</div> */}
 
+
 const places = ['#msTens', '#msHundreds', '#secondOnes', '#secondTens'];
 let digits = [0,0,0,0];
 let displayTime = document.querySelectorAll('.digit');
@@ -34,7 +35,6 @@ function incRoll(i){
     if (digits[i] === 9){
         digits[i] = 0;
         incRoll(i+1);
-        console.log('Done!');
     } else {
         digits[i] ++;
         console.log(digits);
@@ -47,6 +47,7 @@ function tick(){
     }
     if(digits[3] === 1){
         setColor('red');
+        stopTimer();
     }
     updateDisplay();
 }
