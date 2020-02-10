@@ -39,4 +39,37 @@ const siteContent = {
 
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+logo.setAttribute('src', siteContent.nav["img-src"]);
+
+let navLinks = document.getElementsByTagName('a');
+Array.from(navLinks).forEach(function(item, index){
+  navLinks[index].textContent = siteContent.nav[`nav-item-${index + 1}`];
+});
+
+const ctaTextItem = document.querySelector('.cta-text');
+const ctaImage = document.querySelector('#cta-img');
+const midImg = document.querySelector('#middle-img');
+
+ctaTextItem.querySelector('h1').textContent = siteContent.cta['h1'];
+ctaTextItem.querySelector('button').textContent = siteContent.cta['button'];
+ctaImage.src = siteContent.cta['img-src'];
+midImg.src = siteContent['main-content']['middle-img-src'];
+
+//Main text boxes:
+const textDivs = document.querySelectorAll('.text-content');
+const mainCont = siteContent['main-content'];
+//Array to address individual boxes:
+const textBoxes = ['features-','about-','services-','product-','vision-'];
+Array.from(textDivs).forEach(function(item,index){
+  textDivs[index].querySelector('h4').innerText = mainCont[`${textBoxes[index]}h4`];
+  textDivs[index].querySelector('p').innerText = mainCont[`${textBoxes[index]}content`];
+})
+
+//Contact section:
+const contSection = document.querySelector('.contact');
+contSection.querySelector('h4').innerText = siteContent['contact']['contact-h4'];
+const contPs = contSection.querySelectorAll('p');
+contPs[0].innerText = siteContent['contact']['address'];
+contPs[1].innerText = siteContent['contact']['phone'];
+contPs[2].innerText = siteContent['contact']['email'];
+
