@@ -8,10 +8,26 @@ const places = ['#msTens', '#msHundreds', '#secondOnes', '#secondTens'];
 let digits = [0,0,0,0];
 let displayTime = document.querySelectorAll('.digit');
 
+var timerID;
+
+function setColor(color){
+    for (let i = 0; i < 5; i++){
+        displayTime[i].style.color = color;
+    }
+}
+
 function updateDisplay(){
     digits.forEach(function(item,index){
         document.querySelector(places[index]).innerText = digits[index];
     });
+}
+
+function timing(){
+    timerID = setInterval(tick,10);
+}
+
+function stopTimer(){
+    clearInterval(timerID);
 }
 
 function incRoll(i){
@@ -30,12 +46,24 @@ function tick(){
         incRoll(0);
     }
     if(digits[3] === 1){
-        for (let i = 0; i < 5; i++){
-            displayTime[i].style.color = 'red';
-        }
+        setColor('red');
     }
     updateDisplay();
 }
 
 updateDisplay();
-setInterval(tick,10);
+
+const start = document.querySelector('#startButton');
+start.innerText = 'Start';
+start.addEventListener('click', event => {
+    timing();
+});
+
+const reset = document.querySelector('#resetButton');
+reset.innerText = 'Reset';
+reset.addEventListener('click', event => {
+    stopTimer();
+    digits = [0,0,0,0];
+    setColor('black');
+    updateDisplay();
+})
