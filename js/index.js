@@ -42,9 +42,12 @@ let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent.nav["img-src"]);
 
 let navLinks = document.querySelectorAll('a');
-Array.from(navLinks).forEach(function(item, index){
+// Array.from(navLinks).forEach(function(item, index){
+//   navLinks[index].textContent = siteContent.nav[`nav-item-${index + 1}`];
+// });
+for(let index = 0; index < navLinks.length; index++){
   navLinks[index].textContent = siteContent.nav[`nav-item-${index + 1}`];
-});
+}
 
 
 const ctaTextItem = document.querySelector('.cta-text');
@@ -100,6 +103,15 @@ document.querySelector('nav').prepend(firstLink);
 //If the links were given a class, that class could be updated
 //(instead of the individual links)
 
+//Style updates:
+//italicize second main content paragraph:
+textDivs[1].style.fontStyle = 'italic';
+//turn fourth main content paragraph green:
+textDivs[3].style.color = 'green';
+//increase font size in "bottom-content" div:
+document.querySelector('.bottom-content').style.fontSize = '1.6rem';
+
+//Change button functionality to hide/show main content:
 const hideButton = document.querySelector('button');
 hideButton.innerText = 'Show/Hide Info';
 hideButton.addEventListener('click', (event) => {
