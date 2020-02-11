@@ -12,3 +12,18 @@ body {
 .redDigit {
   color: red;
 }
+
+button {
+  border: 1px double black;
+  font-size: 16px;
+  background: white;
+  width: 170px;
+  height: 32px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: black;
+  color: white;
+}

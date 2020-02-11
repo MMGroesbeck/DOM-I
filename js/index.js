@@ -39,4 +39,86 @@ const siteContent = {
 
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+logo.setAttribute('src', siteContent.nav["img-src"]);
+
+let navLinks = document.querySelectorAll('a');
+// Array.from(navLinks).forEach(function(item, index){
+//   navLinks[index].textContent = siteContent.nav[`nav-item-${index + 1}`];
+// });
+for(let index = 0; index < navLinks.length; index++){
+  navLinks[index].textContent = siteContent.nav[`nav-item-${index + 1}`];
+}
+
+
+const ctaTextItem = document.querySelector('.cta-text');
+const ctaImage = document.querySelector('#cta-img');
+const midImg = document.querySelector('#middle-img');
+
+ctaTextItem.querySelector('h1').textContent = siteContent.cta['h1'];
+ctaTextItem.querySelector('button').textContent = siteContent.cta['button'];
+ctaImage.src = siteContent.cta['img-src'];
+midImg.src = siteContent['main-content']['middle-img-src'];
+
+//Main text boxes:
+const textDivs = document.querySelectorAll('.text-content');
+const mainCont = siteContent['main-content'];
+//Array to address individual boxes:
+const textBoxes = ['features-','about-','services-','product-','vision-'];
+// Array.from(textDivs).forEach(function(item,index){
+//   textDivs[index].querySelector('h4').innerText = mainCont[`${textBoxes[index]}h4`];
+//   textDivs[index].querySelector('p').innerText = mainCont[`${textBoxes[index]}content`];
+// })
+for (let i = 0; i < textDivs.length; i++){
+  textDivs[i].querySelector('h4').innerText = mainCont[`${textBoxes[i]}h4`];
+  textDivs[i].querySelector('p').innerText = mainCont[`${textBoxes[i]}content`];
+}
+
+//Contact section:
+const contSection = document.querySelector('.contact');
+contSection.querySelector('h4').innerText = siteContent['contact']['contact-h4'];
+const contPs = contSection.querySelectorAll('p');
+contPs[0].innerText = siteContent['contact']['address'];
+contPs[1].innerText = siteContent['contact']['phone'];
+contPs[2].innerText = siteContent['contact']['email'];
+
+//Footer:
+document.querySelector('footer').querySelector('p').innerText = siteContent['footer']['copyright'];
+
+// // Update navigation color to green:
+// Array.from(navLinks).forEach(function(item,index){
+//   navLinks[index].style.color = 'green';
+// })
+for(let i = 0; i < navLinks.length; i++){
+  navLinks[i].style.color = 'green';
+}
+
+//Add 2 new links to nav bar:
+const firstLink = document.createElement('a');
+firstLink.innerText = 'First!';
+const lastLink = document.createElement('a');
+lastLink.innerText = 'Last!';
+document.querySelector('nav').appendChild(lastLink);
+document.querySelector('nav').prepend(firstLink);
+//NOTE: links added after the color was updated do not have the new style.color
+//If the links were given a class, that class could be updated
+//(instead of the individual links)
+
+//Style updates:
+//italicize second main content paragraph:
+textDivs[1].style.fontStyle = 'italic';
+//turn fourth main content paragraph green:
+textDivs[3].style.color = 'green';
+//increase font size in "bottom-content" div:
+document.querySelector('.bottom-content').style.fontSize = '1.6rem';
+
+//Change button functionality to hide/show main content:
+const hideButton = document.querySelector('button');
+hideButton.innerText = 'Show/Hide Info';
+hideButton.addEventListener('click', (event) => {
+  const mainCont = document.querySelector('.main-content');
+  if (mainCont.style.display !==  'none'){
+    mainCont.style.display = 'none';
+  } else {
+    mainCont.style.display = 'block';
+  }
+})
